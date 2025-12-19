@@ -1,0 +1,12 @@
+version: 3.8
+
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wp-php
