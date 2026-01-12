@@ -1,6 +1,6 @@
 
 FROM alpine:3.22
 
-RUN apt update && apt upgrade && apt install -y nginx
+RUN apk update && apk upgrade && apk add nginx
 
-CMD ["nginx", "-g", "demon off;"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,6 +1,6 @@
 
 FROM alpine:3.22
 
-RUN apt update && apt upgrade && apt install -y php-fpm
+RUN apk update && apk upgrade && apk add php-fpm
 
-CMD ["php-fpm8.2", "-F"]
+CMD ["php-fpm83", "-F"]
