@@ -1,6 +1,8 @@
 
 FROM alpine:3.22
 
-RUN apk update && apk upgrade && apk add php-fpm
+RUN apk update && apk upgrade && apk add --no-cache  php-fpm
 
-CMD ["php-fpm83", "-F"]
+RUN ln -s $(find /usr/sbin -name "php-fpm*") /usr/bin/php-fpm
+
+CMD ["php-fpm", "-F"]
