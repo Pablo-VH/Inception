@@ -1,4 +1,4 @@
-FROM alpine:3.23.4
+FROM alpine:3.23.5
  
 # php-fpm + extensiones que WordPress necesita + mysql-client (para esperar a la BD) + curl para wp-cli
 RUN apk update && apk add --no-cache \
@@ -37,6 +37,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
  
 # Configuracion de php-fpm: que escuche en el puerto 9000 de todas las interfaces
 COPY conf/www.conf /etc/php83/php-fpm.d/www.conf
+
+COPY conf/php.ini /etc/php83/conf.d/99-custom.ini
  
 WORKDIR /var/www/html
  
