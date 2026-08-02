@@ -22,6 +22,9 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
  
     mysql -u root <<-EOSQL
         CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
+
+	-- Eliminamos cuentas anonimas que Alpine crea por defecto
+	DELETE FROM mysql.user WHERE User='';
  
         -- Usuario normal para WordPress
         CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
@@ -32,6 +35,8 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
  
         FLUSH PRIVILEGES;
 EOSQL
+
+
  
     # Paramos el mysqld temporal de forma limpia
     mysqladmin -u root -p"${DB_ROOT_PASSWORD}" shutdown

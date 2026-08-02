@@ -31,5 +31,5 @@ EXPOSE 443
  
 # "-g daemon off" fuerza a nginx a NO hacer fork a segundo plano,
 # para que sea el proceso PID 1 real del contenedor (no un hack tipo tail -f)
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
  
